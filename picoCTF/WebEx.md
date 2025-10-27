@@ -48,3 +48,36 @@ picoCTF{y0u_m4d3_1t_79a0ddc6}
 For Sql Injections : https://swisskyrepo.github.io/PayloadsAllTheThings/SQL%20Injection/SQLite%20Injection/
 To find out how to concatenate a sentence in sqlite : https://www.sqlitetutorial.net/sqlite-string-functions/sqlite-concat/
 ```
+
+# Challenge 2 : SSTI1
+
+> I made a cool website where you can announce whatever you want! Try it out! I heard templating is a cool and modular way to build web apps! Check out my website
+
+## Solution
+
+As told the server uses Server Side Template, so I went to the most reliable site to learn about web exploits i.e. portswigger, there i found how to detect if it is vulnerable to it and what backend template does it have, to find that out I follow the steps given in [Portswigger](https://portswigger.net/web-security/server-side-template-injection)
+
+<img width="640" height="386" alt="image" src="https://github.com/user-attachments/assets/43111658-8a76-42c1-89d7-1fda6ed4ac68" />
+
+I followed the Steps as shown in the image, tried `{7*7}`, which did not work then tried `{{7*7}}` which worked and then did `{{7*'7'}}`, which worked so now that i know that which template is being used i can move on to exploiting it and getting the flag.
+I saw the flag file and then used the same command to `cat flag` using the following command : 
+```
+{{request.application.__globals__.__builtins__.__import__('os').popen('cat flag').read()}}
+
+```
+Which did the trick : 
+<img width="1345" height="141" alt="image" src="https://github.com/user-attachments/assets/4b11f7d7-4849-49be-8b7e-181f51049b8d" />
+
+## Flag 
+```
+picoCTF{s4rv3r_s1d3_t3mp14t3_1nj3ct10n5_4r3_c001_f5438664}
+```
+
+## Resources Used :
+
+```
+To Detech SSTI : https://portswigger.net/web-security/server-side-template-injection
+To Exploit SSTI with Jinja2 Template using RCE : https://onsecurity.io/article/server-side-template-injection-with-jinja2/
+```
+
+# Challenge 3 : Cookies
