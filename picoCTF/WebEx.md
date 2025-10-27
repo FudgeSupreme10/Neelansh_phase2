@@ -81,3 +81,21 @@ To Exploit SSTI with Jinja2 Template using RCE : https://onsecurity.io/article/s
 ```
 
 # Challenge 3 : Cookies
+
+> Who doesn't love cookies? Try to figure out the best one.
+
+## Solution
+
+As suggested by the name, this challenge involved something to do with cookies, when i went to the site, it already hinted me to type `snickerdoodle`, after searching for it, i went to check the cookies, in my browser's devtools, available in the application tab, to the cookies section, there i found the value of `name` is 0, on turning it to `1` the cookie name changed on reloading so i figured i just keep on doing that until it works
+<img width="1919" height="630" alt="image" src="https://github.com/user-attachments/assets/656b498a-c8bb-46d0-bac1-c6b537f92f0e" />
+After changing it to `1` : 
+<img width="1915" height="621" alt="image" src="https://github.com/user-attachments/assets/8ebffdc9-7a32-4bb4-9aaa-cd11518cb8a8" />
+
+I kept on changing the value until i got the flag with value `18` : 
+<img width="1907" height="629" alt="image" src="https://github.com/user-attachments/assets/1827e563-b9fb-4f8a-8cfc-3f313938bb99" />
+
+## Flag
+
+```
+picoCTF{3v3ry1_l0v3s_c00k135_bb3b3535}
+```
