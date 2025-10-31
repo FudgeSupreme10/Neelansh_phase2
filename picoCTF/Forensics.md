@@ -67,4 +67,54 @@ picoCTF{h1dd3n_1n_pLa1n_51GHT_18375919}
 To Decoded ROT13 encoded text : https://cryptii.com/pipes/rot13-decoder
 ```
 
-# Challenge 2 : 
+# Challenge 2 : tunn3l v1s10n
+
+> We found this file. Recover the flag.
+
+## Solution : 
+
+I had no idea on what to do when i got the file, i used the file command to figure out what kind of file it was but it was of no help, so I then went on trying different things like opening or executing the file, but that didn't work, finally i checked the hex of the file, which gave me some insight.
+```shell
+┌──(kali㉿kali)-[~/Desktop/VM_Files/PicoCTF]
+└─$ file tunn3l_v1s10n.bmp 
+tunn3l_v1s10n.bmp: data
+                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/Desktop/VM_Files/PicoCTF]
+└─$ xxd tunn3l_v1s10n | more
+00000000: 424d 8e26 2c00 0000 0000 bad0 0000 bad0  BM.&,...........
+00000010: 0000 6e04 0000 3201 0000 0100 1800 0000  ..n...2.........
+00000020: 0000 5826 2c00 2516 0000 2516 0000 0000  ..X&,.%...%.....
+00000030: 0000 0000 0000 231a 1727 1e1b 2920 1d2a  ......#..'..) .*
+00000040: 211e 261d 1a31 2825 352c 2933 2a27 382f  !.&..1(%5,)3*'8/
+```
+so as known every file extension has a unique file header same for all it's file types, so I searched online what kind of file `424D` was, which then turned out to be a `.bmp` image file, but while checking if the header was correct for the file as it seemed corrupted, i found some irregularities in the header,following our the rules for a .bmp file header :
+```
+Byte 1,2 should be [0x4D 0x42]: 424D
+Bytes 3-6 (Images Size) 00003032
+Bytes 7,8 (Must be zero) 0000
+Bytes 9,10 (Must be zero) 0000
+Bytes 11-14 (Image offset) 00000036
+Bytes 15-18 (size of BITMAPINFOHEADER structure, must be 40 [0x28]) 00000028
+```
+but our header didn't see to follow the rules, so using a [hex editor online](https://hexed.it/), I tried fixing the file's header, to see if that worked. so i changed the first line of the header from : 
+```
+00000000: 424d 8e26 2c00 0000 0000 bad0 0000 bad0  BM.&,...........
+```
+to this
+```
+00000000: 424d 8e26 2c00 0000 0000 3600 0000 2800  BM.&,.....6...(.
+```
+which made the image non corrupt, but on opening it I just saw `nottheflag`, so then again I tried the usual steps on a image, checkout if it's hiding any files inside it like the previous challenge or check it's metadata, and etc. I couldn't find anything, then i googled what all i things i can try and one option stuck out to me which was, changing the width and height of an image by changing it's hex values.
+so i changed the hex value width and height of the image from `3201` to `5203`which seemed to work, so now the height of the image had increased significantly.
+and the image now looked like this
+<img width="818" height="614" alt="image" src="https://github.com/user-attachments/assets/2c439ca9-ba09-4f50-82f8-8a759e2b08c0" />
+
+Flag : 
+```
+picoCTF{qu1t3_a_v13w_2020}
+```
+Resources Used : 
+```
+To edit hex data : https://hexed.it/
+To find the bmp header and required rules for it : https://asecuritysite.com/forensics/bmp?file=router.bmp
+```
