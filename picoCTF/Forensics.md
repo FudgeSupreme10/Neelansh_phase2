@@ -118,3 +118,18 @@ Resources Used :
 To edit hex data : https://hexed.it/
 To find the bmp header and required rules for it : https://asecuritysite.com/forensics/bmp?file=router.bmp
 ```
+
+# Challenge 3 : m00nwalk
+
+> Decode this message from the moon.
+
+## Solution : 
+
+I used the first hint of the challenge to understand what I had to do but the only thing written in the hint was `How did pictures from the moon landing get sent back to Earth?`, so I just searched that on Google and apparently, Some thing called Slow-scan television (SSTV), was used so on searching if I could use it to decode the audio, apparently yes so I used [this](https://sstv-decoder.mathieurenaud.fr/) site to decode SSTV audio, on decoding it I got this image : 
+<img width="320" height="256" alt="image" src="https://github.com/user-attachments/assets/10fc07e8-8ea4-48dd-806a-24a3d52f8544" />
+which had the flag written, so pretty easy challenge.
+
+## Flag : 
+```
+picoCTF{beep_boop_im_in_space}
+```
