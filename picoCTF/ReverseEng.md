@@ -45,6 +45,42 @@ As soon as i deassembled the file, i saw `%eax` registry at the end of the assem
 picoCTF{549698}
 ```
 
-# Challenge 2 : 
+# Challenge 2 : ARMssembly 1
+>For what argument does this program print `win` with variables 85, 6 and 3? File: chall_1.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
 
-``````
+# Solution : 
+
+In the file given i see the main function takes the cli input from us and then passes it as an argument to `func` function by converting it from string to an integer, then i see that `func` returns a value which it compares to 0 if they are true it returns with `WIN`, which is the end goal for this challenge, so now onwards to analyze the `func` function to find the value which will get 0 returned, so for that I saw that the number 85, 6, 3 being stored and left shift and division being performed on them. So i just did that to get the number 1813.
+
+```
+func:
+	sub	sp, sp, #32
+	str	w0, [sp, 12]
+	mov	w0, 85
+	str	w0, [sp, 16]
+	mov	w0, 6
+	str	w0, [sp, 20]
+	mov	w0, 3
+	str	w0, [sp, 24]
+	ldr	w0, [sp, 20]
+	ldr	w1, [sp, 16]
+	lsl	w0, w1, w0
+	str	w0, [sp, 28]
+	ldr	w1, [sp, 28]
+	ldr	w0, [sp, 24]
+	sdiv	w0, w1, w0
+	str	w0, [sp, 28]
+	ldr	w1, [sp, 28]
+	ldr	w0, [sp, 12]
+	sub	w0, w1, w0
+	str	w0, [sp, 28]
+	ldr	w0, [sp, 28]
+	add	sp, sp, 32
+	ret
+```
+the number i then converted to hexadecimal to and padded the left side with zero for 32 bit and enclosed within `picoCTF{}` to get the flag and complete the challenge.
+
+## Flag : 
+```
+picoCTF{00000715}
+```
