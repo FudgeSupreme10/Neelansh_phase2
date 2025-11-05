@@ -84,3 +84,14 @@ the number i then converted to hexadecimal to and padded the left side with zero
 ```
 picoCTF{00000715}
 ```
+
+# Challenge 3 : Vault door 3
+>This vault uses for-loops and byte arrays. The source code for this vault is here: VaultDoor3.java
+
+## Solution : 
+This Program checks that the input provided by us matches the string in the program : `jU5t_a_sna_3lpm18gb41_u_4_mfr340`, after it makes certain changes to the original inputted string so our task here is to reverse the changes made to the string and get the flag. So we need to take the manipulated flag `jU5t_a_sna_3lpm18gb41_u_4_mfr340` and reverse all the transformations done on it. So I just wrote a script and hard coded all the changes done to get the flag.
+
+## Flag : 
+```
+picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_c79a21}
+```
