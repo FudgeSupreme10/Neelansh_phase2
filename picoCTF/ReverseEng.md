@@ -46,7 +46,7 @@ picoCTF{549698}
 ```
 
 # Challenge 2 : ARMssembly 1
->For what argument does this program print `win` with variables 85, 6 and 3? File: chall_1.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
+>For what argument does this program print `win` with variables `85, 6 and 3`? File: chall_1.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
 
 # Solution : 
 
