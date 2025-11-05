@@ -158,6 +158,7 @@ for i in range(10_000):
         print(flag)
 ```
 which directly gave us the flag : 
+
 <img width="426" height="69" alt="image" src="https://github.com/user-attachments/assets/1e590501-5130-4141-9c81-140b808edc09" />
 
 ## Flag : 
