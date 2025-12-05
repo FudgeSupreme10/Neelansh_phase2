@@ -22,3 +22,7 @@ but what I found was that instead of `.PNG` it was `.png` and likewise instead o
 ```
 nite{n0w_y0u_kn0w_ab0ut_PNG_chunk5}
 ```
+
+## Resources Used :
+
+`PNG File Structure` : https://medium.com/@0xwan/png-structure-for-beginner-8363ce2a9f73
