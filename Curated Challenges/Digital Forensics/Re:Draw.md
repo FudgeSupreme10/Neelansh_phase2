@@ -286,4 +286,30 @@ Here after analyzing the output I saw the `important.rar` file and now using the
 Volatility Foundation Volatility Framework 2.6.1
 DataSectionObject 0x3fac3bc0   None   \Device\HarddiskVolume2\Users\Alissa Simpson\Documents\Important.rar
 ```
-now I need to change the .dmp to .rar so it converts into a rar inside the rar I find a image but it is password protected
+now I need to change the .dmp to .rar so it converts into a rar inside the rar I find a image but it is password protected, so need the password what I can do is dump the hashes of the users using `hashdump` plugin to get the NTLM hash password to decrypt the rar file, as follows :
+```cmd
+┌──(kali㉿kali)-[/mnt/…/VM_Files/curated/Redraw/volatility]
+└─$ python2 vol.py -f ../MemoryDump_Lab1.raw --profile=Win7SP1x64 hashdump                                                         
+Volatility Foundation Volatility Framework 2.6.1
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+SmartNet:1001:aad3b435b51404eeaad3b435b51404ee:4943abb39473a6f32c11301f4987e7e0:::
+HomeGroupUser$:1002:aad3b435b51404eeaad3b435b51404ee:f0fc3d257814e08fea06e63c5762ebd5:::
+Alissa Simpson:1003:aad3b435b51404eeaad3b435b51404ee:f4ff64c8baac57d22f22edc681055ba6:::
+```
+Here I can see Alissa's Hash is `f4ff64c8baac57d22f22edc681055ba6` and I need to convert it to Uppercase as per the instructions so `F4FF64C8BAAC57D22F22EDC681055BA6`, doing that worked and I decrypted the image and got the flag :
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/a5519edb-9581-4ccf-b934-73e6c5da07ff" />
+
+### Flag 3 :
+
+```
+flag{w3ll_3rd_stage_was_easy}
+```
+
+## All Flags :
+```
+flag{th1s_1s_th3_1st_st4g3!!}
+flag{Good_BoY_good_girl}
+flag{w3ll_3rd_stage_was_easy}
+```
